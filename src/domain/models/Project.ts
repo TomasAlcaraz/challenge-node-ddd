@@ -6,11 +6,12 @@ export interface IProject extends Document {
   description: string;
   dueDate: Date;
   status: statusEnum;
-  members: Types.ObjectId[];
-  tasks: Types.ObjectId[];
+  members: Schema.Types.ObjectId[];
+  tasks: Schema.Types.ObjectId[];
+  comments: Schema.Types.ObjectId[];
 }
 
-const ProjectSchema: Schema = new Schema(
+const ProjectSchema: Schema<IProject> = new Schema(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
@@ -22,9 +23,10 @@ const ProjectSchema: Schema = new Schema(
     },
     members: [{ type: Schema.Types.ObjectId, ref: "User" }],
     tasks: [{ type: Schema.Types.ObjectId, ref: "Task" }],
+    comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   },
   {
-    timestamps: true,
+    timestamps: false,
   }
 );
 

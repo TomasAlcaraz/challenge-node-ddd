@@ -7,6 +7,7 @@ import {
   deleteProjectController,
   updateProjectController,
   getProjectByUserController,
+  addProjectCommentController,
 } from "../controllers/projectController";
 import { validateStatus } from "../../infrastructure/middleware/validateStatus";
 
@@ -486,7 +487,7 @@ router.post("/", createProjectController);
  *   post:
  *     summary: Create a new project
  *     description: Creates a new project with the provided details.
- *     tags: 
+ *     tags:
  *       - Projects
  *     requestBody:
  *       required: true
@@ -525,6 +526,54 @@ router.post("/", createProjectController);
  *         description: Bad request
  *       500:
  *         description: Internal server error
+ */
+
+router.post("/:id/comments", addProjectCommentController);
+/**
+ * @swagger
+ * /projects/{projectId}/comments:
+ *   post:
+ *     summary: Add a comment to a project
+ *     tags: [Projects]
+ *     description: Adds a new comment to the specified project.
+ *     parameters:
+ *       - in: path
+ *         name: projectId
+ *         required: true
+ *         description: ID of the project to add a comment to.
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               content:
+ *                 type: string
+ *               author:
+ *                 type: string
+ *                 format: ObjectId
+ *     responses:
+ *       '201':
+ *         description: Comment added successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Comment'
+ *       '400':
+ *         description: Error in comment validation
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiError'
+ *       '404':
+ *         description: Project not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiError'
  */
 
 router.get("/search/:id", searchProjectsController);

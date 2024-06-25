@@ -22,6 +22,9 @@ export const getProjectByUserController = async (
       .populate({
         path: "tasks",
         select: "_id title dueDate status assignedTo",
+      })
+      .populate({
+        path: "comments",
       });
 
     sendSuccessResponse(res, projects);
@@ -29,4 +32,3 @@ export const getProjectByUserController = async (
     sendErrorResponse(res, error.message);
   }
 };
-

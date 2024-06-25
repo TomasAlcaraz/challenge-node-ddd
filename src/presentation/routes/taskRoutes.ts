@@ -6,6 +6,7 @@ import {
   createTaskController,
   deleteTaskController,
   updateTaskController,
+  addTaskCommentController,
 } from "../controllers/taskController";
 
 const router = express.Router();
@@ -17,7 +18,7 @@ router.get("/", getAllTasksController);
  *   get:
  *     summary: Retrieve all tasks
  *     description: Retrieve a list of all tasks.
- *     tags: 
+ *     tags:
  *       - Tasks
  *     responses:
  *       200:
@@ -278,6 +279,53 @@ router.delete("/:id", deleteTaskController);
  *                 message:
  *                   type: string
  *                   example: Internal server error
+ */
+
+router.post("/:id/comments", addTaskCommentController);
+/**
+ * @swagger
+ * /tasks/{id}/comments:
+ *   post:
+ *     summary: Add a comment to a task
+ *     tags: [Tasks]
+ *     description: Adds a comment to the specified task.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: ID of the task to add a comment to
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               content:
+ *                 type: string
+ *               author:
+ *                 type: string
+ *     responses:
+ *       '201':
+ *         description: Comment added successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Comment'
+ *       '400':
+ *         description: Error adding comment
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiError'
+ *       '404':
+ *         description: Task not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiError'
  */
 
 router.patch("/:id", updateTaskController);

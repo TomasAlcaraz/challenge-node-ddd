@@ -4,6 +4,7 @@ import { createTaskController } from "./createTaskController";
 import { deleteTaskController } from "./deleteTaskController";
 import { updateTaskController } from "./updateTaskController";
 import { getAllTasksController } from "./getAllTasksController";
+import { addTaskCommentController } from "./addTaskCommentController";
 
 export {
   getAllTasksController,
@@ -12,4 +13,5 @@ export {
   createTaskController,
   deleteTaskController,
   updateTaskController,
+  addTaskCommentController
 };

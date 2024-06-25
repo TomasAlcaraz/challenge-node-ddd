@@ -1,7 +1,8 @@
-import mongoose, { ObjectId } from "mongoose";
+import mongoose, { ObjectId, Schema } from "mongoose";
 import Project, { IProject } from "../../../domain/models/Project";
 import User from "../../../domain/models/User";
 import { statusEnum } from "../../../infrastructure/utils/statusEnum";
+
 
 export interface ProjectData {
   title: string;
@@ -29,7 +30,7 @@ export const createProject = async (
         if (!user) {
           throw new Error(`User ${i + 1} was not found with the provided id`);
         }
-        user.projects.push(newProject._id as mongoose.Types.ObjectId);
+        user.projects.push(newProject._id as Schema.Types.ObjectId);
         await user.save({ session });
         console.log(`Updated user ${user._id} with new project ID`);
       }

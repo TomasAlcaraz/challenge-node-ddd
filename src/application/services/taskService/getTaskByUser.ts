@@ -9,7 +9,9 @@ export const getTasksByUser = async (
     const query: FilterQuery<ITask> = { assignedTo: userId };
     if (status) query["status"] = status;
 
-    const tasks = await Task.find(query);
+    const tasks = await Task.find(query).populate({
+      path: "comments",
+    });
     return tasks;
   } catch (error: any) {
     throw new Error(`Error fetching tasks: ${error.message}`);

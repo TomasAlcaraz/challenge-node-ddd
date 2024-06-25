@@ -11,7 +11,7 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
   try {
     const { status } = req.query;
 
-    // Validar el valor de status usando Joi
+    // validate body arguments
     const { error } = statusSchema.validate(status);
     if (error) {
       throw new Error(
@@ -19,7 +19,7 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
       );
     }
 
-    // Construir el filtro de búsqueda
+    // create filter
     const filter = status ? { status } : {};
 
     const projects = await Project.find(filter)
@@ -31,6 +31,9 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
       .populate({
         path: "tasks",
         select: "_id title dueDate status assignedTo",
+      })
+      .populate({
+        path: "comments",
       });
 
     const total = await Project.countDocuments(filter);
@@ -44,7 +47,6 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
 const statusSchema = Joi.string()
   .valid(...Object.values(statusEnum))
   .optional();
-
 
 /**
  * @swagger

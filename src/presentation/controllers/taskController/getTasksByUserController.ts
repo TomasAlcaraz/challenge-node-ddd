@@ -14,7 +14,9 @@ export const getTasksByUserController = async (req: Request, res: Response) => {
     const query: FilterQuery<ITask> = { assignedTo: userId };
     if (status) query["status"] = status;
 
-    const tasks = await Task.find(query);
+    const tasks = await Task.find(query).populate({
+      path: "comments",
+    });
     return sendSuccessResponse(res, tasks);
   } catch (error: any) {
     return sendErrorResponse(res, error.message);

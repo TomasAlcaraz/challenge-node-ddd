@@ -7,7 +7,7 @@ import {
   sendErrorResponse,
 } from "../../../infrastructure/utils/response";
 import { statusEnum } from "../../../infrastructure/utils/statusEnum";
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import Joi from "joi";
 
 // validate schema task
@@ -63,7 +63,7 @@ export const createTaskController = async (req: Request, res: Response) => {
       if (!user) {
         throw new Error("User not found with the provided id");
       }
-      user.tasks.push(newTask._id as mongoose.Types.ObjectId);
+      user.tasks.push(newTask._id as Schema.Types.ObjectId);
       await user.save();
     }
 
@@ -73,7 +73,7 @@ export const createTaskController = async (req: Request, res: Response) => {
       if (!project) {
         throw new Error("User not found with the provided id");
       }
-      project.tasks.push(newTask._id as mongoose.Types.ObjectId);
+      project.tasks.push(newTask._id as Schema.Types.ObjectId);
       await project.save();
     }
 

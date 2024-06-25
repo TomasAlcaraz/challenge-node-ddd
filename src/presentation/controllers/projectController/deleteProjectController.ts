@@ -6,6 +6,8 @@ import {
 } from "../../../infrastructure/utils/response";
 import Project from "../../../domain/models/Project";
 import mongoose from "mongoose";
+import Task from "../../../domain/models/Task";
+import Comment from "../../../domain/models/Comment";
 
 export const deleteProjectController = async (req: Request, res: Response) => {
   try {
@@ -27,6 +29,3 @@ export const deleteProjectController = async (req: Request, res: Response) => {
     sendErrorResponse(res, error.message);
   }
 };
-
-
-

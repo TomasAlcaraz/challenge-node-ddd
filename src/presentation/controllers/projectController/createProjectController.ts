@@ -23,17 +23,17 @@ export const createProjectController = async (req: Request, res: Response) => {
     const newProject = new Project(projectData);
 
     await newProject.save();
-    console.log("servicio create project");
+
     if (projectData.members.length) {
       for (let i = 0; i < projectData.members.length; i++) {
-        console.log(projectData.members[i]);
+
         const user = await User.findById(projectData.members[i]);
         if (!user)
           throw new Error(`user ${i + 1} was not found with the provided id`);
-        console.log(user);
-        user.projects.push(newProject._id as mongoose.Types.ObjectId);
+        const newProjectId = newProject._id as mongoose.Schema.Types.ObjectId
+        user.projects.push(newProjectId);
         await user.save();
-        console.log(user);
+
       }
     }
 

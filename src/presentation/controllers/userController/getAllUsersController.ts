@@ -8,7 +8,6 @@ import User from "../../../domain/models/User";
 
 export const getAllUsersController = async (req: Request, res: Response) => {
   try {
-    // Consulta para obtener usuarios con filtrado y paginación
     const users = await User.find();
 
     return sendSuccessResponse(res, users);

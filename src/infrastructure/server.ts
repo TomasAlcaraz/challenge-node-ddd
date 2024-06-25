@@ -12,7 +12,7 @@ import commentRoutes from "../presentation/routes/commentRoutes";
 import { specs, swaggerUi } from "./swagger";
 import { PORT } from "./config/envConfig";
 
-// Cargar variables de entorno desde .env
+// Load environment variables from .env
 dotenv.config();
 
 const app = express();
@@ -26,7 +26,7 @@ app.use(express.json());
 // Connect to database
 connectDB();
 
-// Swagger setup : documentation
+// Swagger setup: documentation
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 // Routes
@@ -39,7 +39,6 @@ app.use("/comments", commentRoutes);
 app.get("/", (req, res) => res.send("API is running"));
 
 // Server setup
-
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 export default app;

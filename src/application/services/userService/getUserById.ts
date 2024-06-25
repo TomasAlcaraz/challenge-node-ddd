@@ -8,26 +8,26 @@ export interface ParamsUserById {
 }
 
 export const getUserById = (data: ParamsUserById) => {
-  // try {
-  console.log("medio");
+  try {
+    console.log("medio");
 
-  const user = User.findById(data.id)
-    .populate({
-      path: "projects",
-      match: data.projectStatus ? { status: data.projectStatus } : {},
-      populate: {
+    const user = User.findById(data.id)
+      .populate({
+        path: "projects",
+        match: data.projectStatus ? { status: data.projectStatus } : {},
+        populate: {
+          path: "tasks",
+          match: data.taskStatus ? { status: data.taskStatus } : {},
+        },
+      })
+      .populate({
         path: "tasks",
         match: data.taskStatus ? { status: data.taskStatus } : {},
-      },
-    })
-    .populate({
-      path: "tasks",
-      match: data.taskStatus ? { status: data.taskStatus } : {},
-    });
+      });
 
-  if (!user) throw new Error("User not found");
-  return user;
-  // } catch (error: any) {
-  //   throw new Error(`Failed to get projects: ${error.message}`);
-  // }
+    if (!user) throw new Error("User not found");
+    return user;
+  } catch (error: any) {
+    throw new Error(`Failed to get projects: ${error.message}`);
+  }
 };

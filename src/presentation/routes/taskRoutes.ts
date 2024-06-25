@@ -2,7 +2,6 @@ import express from "express";
 import {
   getAllTasksController,
   getTasksByUserController,
-  searchTasksController,
   createTaskController,
   deleteTaskController,
   updateTaskController,
@@ -66,52 +65,6 @@ router.get("/user/:userId", getTasksByUserController);
  *                 $ref: '#/components/schemas/Task'
  *       400:
  *         description: Bad request
- *       500:
- *         description: Internal server error
- */
-
-router.get("/search/:id", searchTasksController);
-/**
- * @swagger
- * /tasks/search/{id}:
- *   get:
- *     summary: Search tasks by user ID and search term
- *     tags: [Tasks]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *         description: User ID
- *       - in: query
- *         name: searchTerm
- *         schema:
- *           type: string
- *         description: Term to search for in task titles and descriptions
- *       - in: query
- *         name: page
- *         schema:
- *           type: integer
- *         description: Page number for pagination
- *       - in: query
- *         name: limit
- *         schema:
- *           type: integer
- *         description: Number of tasks per page
- *     responses:
- *       200:
- *         description: List of tasks matching the search criteria
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Task'
- *       400:
- *         description: Bad request
- *       404:
- *         description: User or tasks not found
  *       500:
  *         description: Internal server error
  */

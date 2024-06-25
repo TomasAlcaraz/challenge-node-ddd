@@ -2,7 +2,6 @@ import express from "express";
 import {
   createProjectController,
   getProjectByIdController,
-  searchProjectsController,
   getAllProjectsController,
   deleteProjectController,
   updateProjectController,
@@ -365,121 +364,6 @@ router.patch("/:id", updateProjectController);
  *         description: Internal server error
  */
 
-/**
- * @swagger
- * components:
- *   schemas:
- *     ProjectUpdate:
- *       type: object
- *       properties:
- *         title:
- *           type: string
- *           description: The title of the project
- *         description:
- *           type: string
- *           description: The description of the project
- *         dueDate:
- *           type: string
- *           format: date
- *           description: The due date of the project
- *         status:
- *           type: string
- *           enum:
- *             - NOT_STARTED
- *             - IN_PROGRESS
- *             - COMPLETED
- *           description: The status of the project
- *         members:
- *           type: array
- *           items:
- *             type: string
- *             format: ObjectId
- *           description: List of member IDs associated with the project
- *         tasks:
- *           type: array
- *           items:
- *             type: string
- *             format: ObjectId
- *           description: List of task IDs associated with the project
- *
- *     Project:
- *       type: object
- *       properties:
- *         _id:
- *           type: string
- *           description: The unique identifier of the project
- *         title:
- *           type: string
- *           description: The title of the project
- *         description:
- *           type: string
- *           description: The description of the project
- *         dueDate:
- *           type: string
- *           format: date
- *           description: The due date of the project
- *         status:
- *           type: string
- *           enum:
- *             - NOT_STARTED
- *             - IN_PROGRESS
- *             - COMPLETED
- *           description: The status of the project
- *         members:
- *           type: array
- *           items:
- *             $ref: '#/components/schemas/User'
- *           description: List of members associated with the project
- *         tasks:
- *           type: array
- *           items:
- *             $ref: '#/components/schemas/Task'
- *           description: List of tasks associated with the project
- *
- *     User:
- *       type: object
- *       properties:
- *         _id:
- *           type: string
- *           description: The unique identifier of the user
- *         username:
- *           type: string
- *           description: The username of the user
- *         email:
- *           type: string
- *           format: email
- *           description: The email address of the user
- *         roles:
- *           type: array
- *           items:
- *             type: string
- *           description: List of roles assigned to the user
- *
- *     Task:
- *       type: object
- *       properties:
- *         _id:
- *           type: string
- *           description: The unique identifier of the task
- *         title:
- *           type: string
- *           description: The title of the task
- *         dueDate:
- *           type: string
- *           format: date
- *           description: The due date of the task
- *         status:
- *           type: string
- *           enum:
- *             - not started
- *             - in progress
- *             - completed
- *           description: The status of the task
- *         assignedTo:
- *           $ref: '#/components/schemas/User'
- *           description: The user to whom the task is assigned
- */
-
 router.post("/", createProjectController);
 /**
  * @swagger
@@ -567,7 +451,5 @@ router.post("/:id/comments", addProjectCommentController);
  *       '404':
  *         description: Project not found
  */
-
-router.get("/search/:id", searchProjectsController);
 
 export default router;

@@ -13,6 +13,8 @@ Before running the application, ensure you have MongoDB installed and running. T
 
 `PORT` : specifies the port on which the server will run.
 
+`JWT_SECRET` : you can put whatever you want.
+
 ### Installation
 1. Clone the repository:
 ```bash

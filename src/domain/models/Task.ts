@@ -34,3 +34,32 @@ const TaskSchema = new Schema<ITask>(
 const Task = model<ITask>("Task", TaskSchema);
 
 export default Task;
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Task:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *           description: The unique identifier of the task
+ *         title:
+ *           type: string
+ *           description: The title of the task
+ *         dueDate:
+ *           type: string
+ *           format: date
+ *           description: The due date of the task
+ *         status:
+ *           type: string
+ *           enum:
+ *             - not started
+ *             - in progress
+ *             - completed
+ *           description: The status of the task
+ *         assignedTo:
+ *           $ref: '#/components/schemas/User'
+ *           description: The user to whom the task is assigned
+ */

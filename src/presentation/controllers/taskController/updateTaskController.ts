@@ -24,7 +24,7 @@ export const updateTaskController = async (req: Request, res: Response) => {
     const { id } = req.params;
     const updateData = req.body;
 
-    // Validar el cuerpo de la solicitud usando Joi
+    // validate body arguments
     const { error } = taskUpdateSchema.validate(updateData);
     if (error) {
       throw new Error(
@@ -32,12 +32,12 @@ export const updateTaskController = async (req: Request, res: Response) => {
       );
     }
 
-    // Asegurar que el _id no esté presente en los datos de actualización
+    // Ensure that the _id is not present in the update data
     if (updateData._id) {
       throw new Error("Cannot update _id field");
     }
 
-    // Obtener el proyecto anterior de la tarea
+    // Get the previous project of the task
     const task = await Task.findById(id);
     if (!task) {
       throw new Error("Task not found");
@@ -45,7 +45,7 @@ export const updateTaskController = async (req: Request, res: Response) => {
     const previousProjectId = task.projectId;
     const previousUserId = task.assignedTo;
 
-    // Actualizar la tarea
+    // Update the task
     const updatedTask = await Task.findByIdAndUpdate(
       id,
       { $set: updateData },
@@ -55,7 +55,7 @@ export const updateTaskController = async (req: Request, res: Response) => {
       throw new Error("Task not found or no changes detected");
     }
 
-    // Si la tarea se mueve a otro proyecto, eliminarla del proyecto anterior y agregarla al nuevo
+    // If the task is moved to another project, remove it from the previous project and add it to the new one
     if (updateData.projectId && updateData.projectId !== previousProjectId) {
       await Project.findByIdAndUpdate(previousProjectId, {
         $pull: { tasks: id },
@@ -65,6 +65,7 @@ export const updateTaskController = async (req: Request, res: Response) => {
       });
     }
 
+    // If the task is assigned to another user, remove it from the previous user and add it to the new one
     if (updateData.assignedTo && updateData.assignedTo !== previousUserId) {
       await Project.findByIdAndUpdate(previousUserId, {
         $pull: { tasks: id },
@@ -74,7 +75,7 @@ export const updateTaskController = async (req: Request, res: Response) => {
       });
     }
 
-    // return the updated task
+    // Return the updated task
     const updatedTaskWithPopulate = await Task.findById(id)
       .populate({
         path: "projectId",

@@ -6,7 +6,7 @@ export enum orderEnum {
   ASC = "ASC",
 }
 
-export interface getUserParameters {
+interface getUserParameters {
   name?: string;
   email?: string;
   sortBy?: orderEnum;
@@ -16,23 +16,23 @@ export interface getUserParameters {
 }
 
 export const getAllUsers = async (data: getUserParameters) => {
-  // Parámetros de paginación opcionales
+  // Optional pagination parameters
   const page = parseInt(data.page as string) || 1;
   const pageSize = parseInt(data.pageSize as string) || 10;
   const offset = (page - 1) * pageSize;
 
-  // Parámetros de ordenación opcionales
+  // Optional sorting parameters
   const sortBy = data.sortBy as string;
   const sortOrder = data.sortOrder;
 
-  // Consulta para obtener usuarios con paginación
+  // Query to get users with pagination
   const query: any = {
     limit: pageSize,
     offset: offset,
     order: sortBy ? [[sortBy, sortOrder]] : [],
   };
 
-  // Agrega condiciones de filtrado si se proporcionan
+  // Add filtering conditions if provided
   if (data.name) {
     query.where = { name: data.name };
   }

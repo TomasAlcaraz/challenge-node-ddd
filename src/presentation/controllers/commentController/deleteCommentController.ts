@@ -56,7 +56,7 @@ export const deleteCommentController = async (req: Request, res: Response) => {
       throw new Error("Comment not found in associated task or project");
     }
 
-    sendSuccessResponse(res, { successfully: true }, 204);
+    sendSuccessResponse(res, comment, 204);
   } catch (error: any) {
     sendErrorResponse(res, error.message);
   }

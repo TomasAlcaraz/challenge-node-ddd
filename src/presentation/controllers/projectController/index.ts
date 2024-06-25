@@ -1,11 +1,17 @@
 import { createProjectController } from "./createProjectController";
-import { getProjectByUserController } from "./getProjectByUserController";
+import { getProjectByIdController } from "./getProjectByIdController";
 import { searchProjectsController } from "./searchProjectController";
 import { getAllProjectsController } from "./getAllProjectsController";
+import { deleteProjectController } from "./deleteProjectController";
+import { updateProjectController } from "./updateProjectController";
+import { getProjectByUserController } from "./getProjectByUserController";
 
 export {
   createProjectController,
-  getProjectByUserController,
+  getProjectByIdController,
   searchProjectsController,
-  getAllProjectsController
+  getAllProjectsController,
+  deleteProjectController,
+  updateProjectController,
+  getProjectByUserController,
 };

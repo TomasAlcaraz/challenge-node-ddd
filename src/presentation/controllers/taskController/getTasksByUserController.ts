@@ -4,16 +4,19 @@ import {
   sendErrorResponse,
 } from "../../../infrastructure/utils/response";
 import { getTasksByUser } from "../../../application/services/taskService";
+import { FilterQuery } from "mongoose";
+import Task, { ITask } from "../../../domain/models/Task";
 
-const getTasksByUserController = async (req: Request, res: Response) => {
+export const getTasksByUserController = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
-    const { status, page, limit } = req.query;
-    const tasks = await getTasksByUser(userId, status as string);
-    sendSuccessResponse(res, tasks);
+    const { status } = req.query;
+    const query: FilterQuery<ITask> = { assignedTo: userId };
+    if (status) query["status"] = status;
+
+    const tasks = await Task.find(query);
+    return sendSuccessResponse(res, tasks);
   } catch (error: any) {
-    sendErrorResponse(res, error.message);
+    return sendErrorResponse(res, error.message);
   }
 };
-
-export { getTasksByUserController };

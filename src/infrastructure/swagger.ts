@@ -1,3 +1,4 @@
+import { title } from "process";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 
@@ -5,7 +6,7 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Project Management API",
+      title: "Challenge Tasks Management",
       version: "1.0.0",
       description: "API for managing projects and tasks",
     },

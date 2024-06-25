@@ -18,5 +18,45 @@ const searchProjectsController = async (req: Request, res: Response) => {
 
 export { searchProjectsController };
 
-
-
+/**
+ * @swagger
+ * /projects/search/{userId}:
+ *   get:
+ *     summary: Search projects by user ID
+ *     tags: [Projects]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the user whose projects are being searched
+ *       - in: query
+ *         name: searchTerm
+ *         schema:
+ *           type: string
+ *         description: Search term to filter projects
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page number for pagination
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Number of items per page
+ *     responses:
+ *       '200':
+ *         description: Successful operation
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Project'
+ *       '400':
+ *         description: Invalid request
+ *       '500':
+ *         description: Internal server error
+ */

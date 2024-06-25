@@ -6,7 +6,7 @@ import {
   sendErrorResponse,
 } from "../../../infrastructure/utils/response";
 
-const createUserController = async (req: Request, res: Response) => {
+export const createUserController = async (req: Request, res: Response) => {
   try {
     const { username, email, password }: IUser = req.body;
 
@@ -17,5 +17,3 @@ const createUserController = async (req: Request, res: Response) => {
     sendErrorResponse(res, error.message);
   }
 };
-
-export { createUserController };

@@ -1,24 +1,36 @@
-import { Schema, model, Document } from "mongoose";
+import { Schema, model, Document, Types } from "mongoose";
+import { statusEnum } from "../../infrastructure/utils/statusEnum";
 
 export interface IProject extends Document {
   title: string;
   description: string;
   dueDate: Date;
-  status: string;
-  users: Schema.Types.ObjectId[];
+  status: statusEnum;
+  members: Types.ObjectId[];
+  tasks: Types.ObjectId[];
 }
 
-const projectSchema = new Schema<IProject>({
-  title: { type: String, required: true },
-  description: { type: String, required: true },
-  dueDate: { type: Date, required: true },
-  status: {
-    type: String,
-    enum: ["not started", "in progress", "completed"],
-    required: true,
+const ProjectSchema: Schema = new Schema(
+  {
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    dueDate: { type: Date, required: true },
+    status: {
+      type: String,
+      enum: statusEnum,
+      default: statusEnum.NOT_STARTED,
+    },
+    members: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    tasks: [{ type: Schema.Types.ObjectId, ref: "Task" }],
   },
-  users: [{ type: Schema.Types.ObjectId, ref: "User" }],
-});
+  {
+    timestamps: true,
+  }
+);
+
+const Project = model<IProject>("Project", ProjectSchema);
+
+export default Project;
 
 /**
  * @swagger
@@ -54,7 +66,3 @@ const projectSchema = new Schema<IProject>({
  *             format: uuid
  *           description: List of user IDs assigned to the project
  */
-
-const Project = model<IProject>("Project", projectSchema);
-
-export default Project;

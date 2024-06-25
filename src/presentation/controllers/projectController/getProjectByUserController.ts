@@ -1,21 +1,32 @@
 import { Request, Response } from "express";
-import { getProjectsByUser } from "../../../application/services/projectService";
+import { getProjectByUser } from "../../../application/services/projectService";
 import {
   sendSuccessResponse,
   sendErrorResponse,
 } from "../../../infrastructure/utils/response";
+import Project from "../../../domain/models/Project";
 
-const getProjectByUserController = async (req: Request, res: Response) => {
+export const getProjectByUserController = async (
+  req: Request,
+  res: Response
+) => {
   try {
-    const { userId } = req.params;
-    const { status, page, limit } = req.query;
-    const projects = await getProjectsByUser(userId, status as string);
+    const { id } = req.params;
+
+    const projects = await Project.find({ members: id })
+      .select("_id title status")
+      .populate({
+        path: "members",
+        select: "_id username email",
+      })
+      .populate({
+        path: "tasks",
+        select: "_id title dueDate status assignedTo",
+      });
+
     sendSuccessResponse(res, projects);
   } catch (error: any) {
     sendErrorResponse(res, error.message);
   }
 };
-
-export { getProjectByUserController };
-
 

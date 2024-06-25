@@ -4,14 +4,15 @@ import {
   sendSuccessResponse,
   sendErrorResponse,
 } from "../../../infrastructure/utils/response";
+import User from "../../../domain/models/User";
 
-const getAllUsersController = async (req: Request, res: Response) => {
+export const getAllUsersController = async (req: Request, res: Response) => {
   try {
-    const projects = await getAllUsers();
-    sendSuccessResponse(res, projects);
+    // Consulta para obtener usuarios con filtrado y paginación
+    const users = await User.find();
+
+    return sendSuccessResponse(res, users);
   } catch (error: any) {
-    sendErrorResponse(res, error.message);
+    return sendErrorResponse(res, error.message);
   }
 };
-
-export { getAllUsersController };

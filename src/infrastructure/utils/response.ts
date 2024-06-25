@@ -7,7 +7,7 @@ const sendSuccessResponse = (res: Response, data: any, statusCode = 200) => {
   });
 };
 
-const sendErrorResponse = (res: Response, message: string, statusCode = 400) => {
+const sendErrorResponse: any = (res: Response, message: string, statusCode = 400) => {
   return res.status(statusCode).json({
     success: false,
     error: message,

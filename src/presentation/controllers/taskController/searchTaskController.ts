@@ -5,7 +5,7 @@ import {
 } from "../../../infrastructure/utils/response";
 import { searchTasks } from "../../../application/services/taskService";
 
-const searchTasksController = async (req: Request, res: Response) => {
+export const searchTasksController = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
     const { searchTerm, page, limit } = req.query;
@@ -16,4 +16,3 @@ const searchTasksController = async (req: Request, res: Response) => {
   }
 };
 
-export { searchTasksController };

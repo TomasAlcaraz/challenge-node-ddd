@@ -1,7 +1,8 @@
-import schedule from 'node-schedule';
-import Task from '../../domain/models/Task';
-import User from '../../domain/models/User';
-import { notifyTaskUpdate } from './notificationService';
+import schedule from "node-schedule";
+
+import { notifyTaskUpdate } from "../notificationService";
+import Task from "../../../domain/models/Task";
+import User from "../../../domain/models/User";
 
 const scheduleReminder = (taskId: string, reminderDate: Date) => {
   schedule.scheduleJob(reminderDate, async () => {

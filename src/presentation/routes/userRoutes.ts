@@ -35,7 +35,7 @@ router.get("/", getAllUsersController);
 router.post("/", createUserController);
 /**
  * @swagger
- * /api/users:
+ * /users:
  *   post:
  *     summary: Create a new user
  *     tags:

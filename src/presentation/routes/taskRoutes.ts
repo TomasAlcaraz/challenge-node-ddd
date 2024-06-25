@@ -35,7 +35,7 @@ router.get("/", getAllTasksController);
 router.get("/user/:userId", getTasksByUserController);
 /**
  * @swagger
- * /user/{userId}:
+ * /tasks/user/{userId}:
  *   get:
  *     summary: Retrieve tasks by user
  *     description: Retrieve a list of tasks assigned to a user, optionally filtered by status.
@@ -72,7 +72,7 @@ router.get("/user/:userId", getTasksByUserController);
 router.get("/search/:id", searchTasksController);
 /**
  * @swagger
- * /search/{id}:
+ * /tasks/search/{id}:
  *   get:
  *     summary: Search tasks by user ID and search term
  *     tags: [Tasks]

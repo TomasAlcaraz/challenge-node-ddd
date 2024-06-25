@@ -1,5 +1,5 @@
 
-# Project Management Application
+# Project Management Application 📚
 ### Introduction
 This is a web-based project management application built using Node.js, Express and TypeScript, following Domain-Driven Design (DDD) principles. It provides RESTful APIs for managing projects and tasks, along with user authentication and authorization.
 
@@ -16,12 +16,12 @@ Before running the application, ensure you have MongoDB installed and running. T
 ### Installation
 1. Clone the repository:
 ```bash
-  git clone https://github.com/your-username/project-management.git
+  git clone https://github.com/TomasAlcaraz/challenge-node-ddd.git
 ```
 
 2. Install dependencies:
 ```bash
-  cd project-management
+  cd challenge-node-ddd
 ```
 ```bash
   npm install

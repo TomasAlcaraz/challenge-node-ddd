@@ -39,27 +39,17 @@ replace 500 with the server port
 
 ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
 ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
-
-bash
-Copy code
-cd project-management
-npm install
-Start the server:
-
-bash
-Copy code
-npm start
-Usage
-Once the server is running, you can access the API documentation at http://localhost:5000/api-docs.
-
-Bonus Features
-Users can assign tasks to other users.
-Users can add comments to projects and tasks.
-Notifications system sends email notifications to users.
-Pagination for retrieving a list of projects and tasks.
-Search function for projects and tasks.
-Ability for users to upload files to projects and tasks.
-Ability for users to set reminders for tasks.
-Feel free to customize the content and formatting according to your preferences!
-
-Feel free to reach out to me at tomas@example.com for any inquiries or support.
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 
+![#00b48a](https://via.placeholder.com/10/00b48a?text=+) 

@@ -2,7 +2,7 @@ import express from "express";
 import {
   getCommentByIdController,
   deleteCommentController,
-  updateCommentById
+  updateCommentByIdController
 } from "../controllers/commentController";
 
 const router = express.Router();
@@ -31,13 +31,9 @@ router.get("/:id", getCommentByIdController);
  *               $ref: '#/components/schemas/Comment'
  *       '404':
  *         description: Comment not found
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ApiError'
  */
 
-router.put("/:id", updateCommentById);
+router.put("/:id", updateCommentByIdController);
 /**
  * @swagger
  * /comments/{id}:
@@ -58,7 +54,7 @@ router.put("/:id", updateCommentById);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/UpdateCommentInput'
+ *             $ref: '#/components/schemas/Comment'
  *     responses:
  *       '200':
  *         description: Updated comment successfully
@@ -68,10 +64,6 @@ router.put("/:id", updateCommentById);
  *               $ref: '#/components/schemas/Comment'
  *       '404':
  *         description: Comment not found
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ApiError'
  */
 
 router.delete("/:id", deleteCommentController);
@@ -107,8 +99,6 @@ router.delete("/:id", deleteCommentController);
  *         description: Comment successfully deleted
  *       '400':
  *         description: Error message
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ApiError'
  */
+
+export default router;

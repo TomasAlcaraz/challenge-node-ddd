@@ -18,3 +18,25 @@ export const CommentSchema: Schema<IComment> = new Schema(
 const Comment = mongoose.model<IComment>("Comment", CommentSchema);
 
 export default Comment;
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Comment:
+ *       type: object
+ *       required:
+ *         - content
+ *         - author
+ *       properties:
+ *         content:
+ *           type: string
+ *           description: The content of the comment.
+ *         author:
+ *           type: string
+ *           format: ObjectId
+ *           description: The ID of the user who authored the comment.
+ *       example:
+ *         content: This is a sample comment.
+ *         author: 60b9f6482d4e6855502d35b0
+ */

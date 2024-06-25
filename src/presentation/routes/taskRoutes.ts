@@ -316,16 +316,8 @@ router.post("/:id/comments", addTaskCommentController);
  *               $ref: '#/components/schemas/Comment'
  *       '400':
  *         description: Error adding comment
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ApiError'
  *       '404':
  *         description: Task not found
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ApiError'
  */
 
 router.patch("/:id", updateTaskController);

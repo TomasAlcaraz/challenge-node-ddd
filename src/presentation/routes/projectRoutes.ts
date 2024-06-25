@@ -349,7 +349,7 @@ router.patch("/:id", updateProjectController);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/ProjectUpdate'
+ *             $ref: '#/components/schemas/Project'
  *     responses:
  *       '200':
  *         description: Project updated successfully
@@ -564,16 +564,8 @@ router.post("/:id/comments", addProjectCommentController);
  *               $ref: '#/components/schemas/Comment'
  *       '400':
  *         description: Error in comment validation
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ApiError'
  *       '404':
  *         description: Project not found
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/ApiError'
  */
 
 router.get("/search/:id", searchProjectsController);

@@ -8,6 +8,7 @@ import authRoutes from "../presentation/routes/authRoutes";
 import projectRoutes from "../presentation/routes/projectRoutes";
 import taskRoutes from "../presentation/routes/taskRoutes";
 import userRoutes from "../presentation/routes/userRoutes";
+import commentRoutes from "../presentation/routes/commentRoutes";
 import { specs, swaggerUi } from "./swagger";
 import { PORT } from "./config/envConfig";
 
@@ -33,6 +34,7 @@ app.use("/auth", authRoutes);
 app.use("/projects", projectRoutes);
 app.use("/tasks", taskRoutes);
 app.use("/users", userRoutes);
+app.use("/comments", commentRoutes);
 
 app.get("/", (req, res) => res.send("API is running"));
 
